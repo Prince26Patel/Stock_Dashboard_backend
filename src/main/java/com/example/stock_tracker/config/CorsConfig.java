@@ -14,7 +14,7 @@ public class CorsConfig {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**")
-                        .allowedOrigins("http://localhost:3000") // Update for production
+                        .allowedOrigins("https://stock-dashboard-xi.vercel.app") // Update for production
                         .allowedMethods("GET", "POST", "PUT", "DELETE","PATCH") // Restrict to necessary methods
                         .allowedHeaders("*") // Allow all headers
                         .allowCredentials(true); // Allow credentials (cookies, etc.)
