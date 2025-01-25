@@ -11,8 +11,11 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-            .cors(cors -> cors.disable()) // Disable CORS configuration if unnecessary
-            .csrf(csrf -> csrf.disable()) // Disable CSRF for development (not recommended for production)
+            .cors(cors -> cors.configurationSource(request -> {
+                // Delegate CORS handling to the CorsConfig
+                return null; // Leave null to use the default WebMvcConfigurer settings
+            }))
+            .csrf(csrf -> csrf.disable()) // Disable CSRF (not recommended for production unless absolutely necessary)
             .authorizeHttpRequests(auth -> auth
                 .anyRequest().permitAll() // Allow all requests without authentication
             );
